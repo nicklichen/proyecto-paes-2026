@@ -1,0 +1,16 @@
+# Entorno virtual de Python - Cada usuario genera su entorno. 
+.venv/
+
+# Datos originales - Dado que los .csv son muy grandes, tendremos que recurrir a que cada usuario los descargue, 
+# por eso la revision inicial en el notebook 00.
+# Para Datos intermedios, tendremos un razonamiento similar, con el agregado que en los notebook 
+# realizaremos un proceso metódico y definido, que reproduce siempre el mismo dataset final. 
+data/raw/
+data/intermediate/
+
+# Archivos temporales de Python/Jupyter
+__pycache__/
+.ipynb_checkpoints/
+
+# Archivos generados automaticamente por MacOS
+.DS_Store

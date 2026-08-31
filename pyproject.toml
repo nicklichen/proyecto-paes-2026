@@ -1,0 +1,16 @@
+[project]
+name = "paes-2026"
+version = "0.1.0"
+description = "Modulo 1: Introduccion y fundamentos estadisticos - Diplomado en Ciencia de Datos Aplicada UTFSM"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.0",
+    "pandas>=2.2",
+    "matplotlib>=3.9",
+    "seaborn>=0.13",
+    "scipy>=1.14",
+    "statsmodels>=0.14",
+    "scikit-learn>=1.5",
+    "jupyterlab>=4.2",
+    "python-pptx>=1.0",
+]
