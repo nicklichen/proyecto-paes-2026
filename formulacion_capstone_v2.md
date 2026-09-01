@@ -1,4 +1,5 @@
-#VERSION DE GEMINI
+# BORRADOR - GENERADO POR GEMINI
+
 # Formulación de Proyecto Capstone: Análisis Exploratorio Multidimensional y Modelamiento de Rendimiento en la PAES (Procesos 2023-2026)
 
 **Curso:** (202607)(INF074H) INTRODUCCIÓN Y FUNDAMENTOS ESTADÍSTICOS
