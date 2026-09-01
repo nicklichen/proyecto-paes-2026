@@ -1,4 +1,5 @@
 # BORRADOR - GENERADO POR GEMINI
+# Habría que pedir orientación para definir la pregunta de investigación
 
 # Formulación de Proyecto Capstone: Análisis Exploratorio Multidimensional y Modelamiento de Rendimiento en la PAES (Procesos 2023-2026)
 
