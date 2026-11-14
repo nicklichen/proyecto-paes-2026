@@ -1,0 +1,719 @@
+{
+ "cutoff_change_sd": {
+  "Δ 2023→24": 53.2,
+  "Δ 2024→25": 53.5,
+  "Δ 2025→26": 50.7
+ },
+ "label_rates": {
+  "2023": {
+   "todos": 0.23509021182955359,
+   "efectivos": 0.20469261953684678
+  },
+  "2024": {
+   "todos": 0.20250971082153815,
+   "efectivos": 0.17011139296349398
+  },
+  "2025": {
+   "todos": 0.167194786874546,
+   "efectivos": 0.13624204308471727
+  },
+  "2026": {
+   "todos": 0.14515388148828665,
+   "efectivos": 0.11058680055812523
+  }
+ },
+ "auc_best_holgura": {
+  "legitimo": 0.9711177326235622,
+  "trampa": 0.9983954085636646
+ },
+ "design": {
+  "anchors": {
+   "Nadie recibe alerta": 1362.42,
+   "Todos reciben alerta": 863.76,
+   "B0: regla de hoy (margen 0)": 251.08,
+   "B1: regla con margen +40 pts": 183.93
+  },
+  "margin_B1": 40.0,
+  "models": {
+   "Logit 1 variable (best_holgura)": {
+    "cost_1000": 204.3085,
+    "alert_rate": 0.3039,
+    "recall": 0.9756,
+    "precision": 0.4373,
+    "AUC": 0.9706,
+    "PR_AUC": 0.8573,
+    "logloss": 0.1532,
+    "brier": 0.0455
+   },
+   "Logit F1": {
+    "cost_1000": 185.5231,
+    "alert_rate": 0.2825,
+    "recall": 0.9738,
+    "precision": 0.4696,
+    "AUC": 0.9733,
+    "PR_AUC": 0.8655,
+    "logloss": 0.1502,
+    "brier": 0.0466
+   },
+   "Logit F2 (+socioeducativas)": {
+    "cost_1000": 184.8297,
+    "alert_rate": 0.282,
+    "recall": 0.9739,
+    "precision": 0.4706,
+    "AUC": 0.9733,
+    "PR_AUC": 0.8657,
+    "logloss": 0.1502,
+    "brier": 0.0466
+   },
+   "HistGB F1": {
+    "cost_1000": 168.561,
+    "alert_rate": 0.2485,
+    "recall": 0.9625,
+    "precision": 0.5276,
+    "AUC": 0.9771,
+    "PR_AUC": 0.8899,
+    "logloss": 0.1368,
+    "brier": 0.0418
+   },
+   "HistGB F2 (+socioeducativas)": {
+    "cost_1000": 171.0286,
+    "alert_rate": 0.254,
+    "recall": 0.9645,
+    "precision": 0.5173,
+    "AUC": 0.9768,
+    "PR_AUC": 0.8854,
+    "logloss": 0.14,
+    "brier": 0.0424
+   },
+   "B0: regla de hoy": {
+    "cost_1000": 251.0837,
+    "alert_rate": 0.1654,
+    "recall": 0.8519,
+    "precision": 0.7018,
+    "AUC": NaN,
+    "PR_AUC": NaN,
+    "logloss": NaN,
+    "brier": NaN
+   },
+   "B1: margen +40": {
+    "cost_1000": 183.9344,
+    "alert_rate": 0.264,
+    "recall": 0.9625,
+    "precision": 0.4967,
+    "AUC": NaN,
+    "PR_AUC": NaN,
+    "logloss": NaN,
+    "brier": NaN
+   }
+  }
+ },
+ "frozen": {
+  "población": "postulantes con >=1 preferencia válida; los demás: alerta fija",
+  "etiqueta": "sin ESTADO 24 en ningún cupo",
+  "modelo propuesto": "HistGradientBoosting con variables F1 (sin socioeducativas)",
+  "modelo interpretable": "Regresión logística con F1",
+  "hiperparámetros": "se re-buscan con el mismo procedimiento sobre 2024+2025 (solo con CV interna)",
+  "umbral": "p* teórico = 0.0909 (razón de costos 10:1)",
+  "comparador principal": "B1 (regla con margen ajustado en entrenamiento)",
+  "corrección de prevalencia": "ninguna (EM descartado)",
+  "variable delta_prev_best": "solo como extensión declarada (entrenada con 2025)"
+ },
+ "final_people": {
+  "B0: regla de hoy (margen 0)": {
+   "alertas emitidas": 25323,
+   "alertas útiles (TP)": 17613,
+   "alertas innecesarias (FP)": 7710,
+   "casos sin alerta que fallaron (FN)": 2518,
+   "costo total (10·FN + FP)": 32890
+  },
+  "B1: regla con margen +35": {
+   "alertas emitidas": 40327,
+   "alertas útiles (TP)": 19472,
+   "alertas innecesarias (FP)": 20855,
+   "casos sin alerta que fallaron (FN)": 659,
+   "costo total (10·FN + FP)": 27445
+  },
+  "HistGB F1": {
+   "alertas emitidas": 39256,
+   "alertas útiles (TP)": 19682,
+   "alertas innecesarias (FP)": 19574,
+   "casos sin alerta que fallaron (FN)": 449,
+   "costo total (10·FN + FP)": 24064
+  }
+ },
+ "capacity": {
+  "5000": {
+   "recall HistGB": 0.2475,
+   "precisión HistGB": 0.9966,
+   "recall ranking por holgura": 0.2087,
+   "precisión ranking por holgura": 0.8402
+  },
+  "10000": {
+   "recall HistGB": 0.4837,
+   "precisión HistGB": 0.9738,
+   "recall ranking por holgura": 0.4225,
+   "precisión ranking por holgura": 0.8505
+  },
+  "20000": {
+   "recall HistGB": 0.8128,
+   "precisión HistGB": 0.8182,
+   "recall ranking por holgura": 0.7614,
+   "precisión ranking por holgura": 0.7664
+  },
+  "30000": {
+   "recall HistGB": 0.9362,
+   "precisión HistGB": 0.6282,
+   "recall ranking por holgura": 0.9253,
+   "precisión ranking por holgura": 0.6209
+  },
+  "39256": {
+   "recall HistGB": 0.9777,
+   "precisión HistGB": 0.5014,
+   "recall ranking por holgura": 0.9642,
+   "precisión ranking por holgura": 0.4945
+  }
+ },
+ "sensitivity": {
+  "3:1": {
+   "p*": 0.25,
+   "margen B1": 10.0,
+   "B0": 83.85,
+   "B1": 85.01,
+   "Logit F1": 83.92,
+   "HistGB F1": 79.34,
+   "todos alertados": 889.41,
+   "HistGB vs B1 (%)": -6.68
+  },
+  "5:1": {
+   "p*": 0.17,
+   "margen B1": 20.0,
+   "B0": 111.52,
+   "B1": 109.51,
+   "Logit F1": 107.0,
+   "HistGB F1": 100.19,
+   "todos alertados": 889.41,
+   "HistGB vs B1 (%)": -8.51
+  },
+  "10:1": {
+   "p*": 0.09,
+   "margen B1": 35.0,
+   "B0": 180.68,
+   "B1": 150.77,
+   "Logit F1": 146.9,
+   "HistGB F1": 132.19,
+   "todos alertados": 889.41,
+   "HistGB vs B1 (%)": -12.32
+  },
+  "20:1": {
+   "p*": 0.05,
+   "margen B1": 60.0,
+   "B0": 319.0,
+   "B1": 218.53,
+   "Logit F1": 192.91,
+   "HistGB F1": 166.73,
+   "todos alertados": 889.41,
+   "HistGB vs B1 (%)": -23.7
+  },
+  "40:1": {
+   "p*": 0.02,
+   "margen B1": 80.0,
+   "B0": 595.64,
+   "B1": 284.52,
+   "Logit F1": 243.99,
+   "HistGB F1": 203.19,
+   "todos alertados": 889.41,
+   "HistGB vs B1 (%)": -28.58
+  }
+ },
+ "extension_delta": {
+  "delta_cost_mean": -5.175477817783833,
+  "ci": [
+   -7.487117265306787,
+   -2.879271251990933
+  ],
+  "cost_with": 121.41421021984421,
+  "cost_without_2025only": 126.56698052055066
+ },
+ "backtest_thr": {
+  "thr": 0.11,
+  "cost_2026": 127.2701304123315,
+  "cost_pstar": 132.19217965479734
+ },
+ "calibration": {
+  "mean_pred_hgb": 0.12786448890289787,
+  "mean_pred_logit": 0.13014175884082305,
+  "real": 0.11058680055812523,
+  "ece_hgb": 0.01727768834477264,
+  "ece_logit": 0.019554958282697803
+ },
+ "weighted_score_match": 0.9976,
+ "substitutes": {
+  "Co-ocurrencia (no supervisado)": {
+   "alertados con ≥1 sugerencia": 0.7259,
+   "sugerencias por persona (media)": 2.5567,
+   "sugerencias que habrían sido seleccionadas": 0.958,
+   "personas que cayeron y habrían sido rescatadas": 0.6148,
+   "pertinencia: mismo nombre que una de su lista": 0.4237,
+   "pertinencia: misma área (1ª palabra del nombre)": 0.6789
+  },
+  "Híbrido: mismo nombre y luego co-ocurrencia": {
+   "alertados con ≥1 sugerencia": 0.8865,
+   "sugerencias por persona (media)": 2.8667,
+   "sugerencias que habrían sido seleccionadas": 0.9715,
+   "personas que cayeron y habrían sido rescatadas": 0.8071,
+   "pertinencia: mismo nombre que una de su lista": 0.8868,
+   "pertinencia: misma área (1ª palabra del nombre)": 0.9383
+  },
+  "Mismo nombre, otra universidad": {
+   "alertados con ≥1 sugerencia": 0.7953,
+   "sugerencias por persona (media)": 2.8337,
+   "sugerencias que habrían sido seleccionadas": 0.9753,
+   "personas que cayeron y habrían sido rescatadas": 0.6927,
+   "pertinencia: mismo nombre que una de su lista": 1.0,
+   "pertinencia: misma área (1ª palabra del nombre)": 1.0
+  },
+  "Al azar (mismo filtro de holgura)": {
+   "alertados con ≥1 sugerencia": 0.9504,
+   "sugerencias por persona (media)": 2.7376,
+   "sugerencias que habrían sido seleccionadas": 0.9473,
+   "personas que cayeron y habrían sido rescatadas": 0.9374,
+   "pertinencia: mismo nombre que una de su lista": 0.0261,
+   "pertinencia: misma área (1ª palabra del nombre)": 0.0973
+  }
+ },
+ "importance_hgb": {
+  "best_holgura_p5": 0.16759,
+  "best_holgura": 0.08219,
+  "n_sin_corte_prev": 0.01614,
+  "n_above_0": 0.01133,
+  "ptje_oblig": 0.00917,
+  "n_sel_prev_best": 0.00541,
+  "gap_prev_best": 0.00533,
+  "n_above_60": 0.00477,
+  "mean_ptje": 0.00455,
+  "cupo_pace": 0.00269
+ },
+ "subgroups": {
+  "Sexo | Hombre": {
+   "n": 78398.0,
+   "tasa real": 0.1041,
+   "tasa de alerta": 0.1986,
+   "recall": 0.9604,
+   "precisión": 0.5033,
+   "recall B1": 0.9401,
+   "costo/1000 modelo": 139.8122,
+   "costo/1000 B1": 160.3102,
+   "p media predicha": 0.1129,
+   "% alertados con sugerencia": 0.9016
+  },
+  "Sexo | Mujer": {
+   "n": 103640.0,
+   "tasa real": 0.1155,
+   "tasa de alerta": 0.2286,
+   "recall": 0.9895,
+   "precisión": 0.5001,
+   "recall B1": 0.9858,
+   "costo/1000 modelo": 126.428,
+   "costo/1000 B1": 143.545,
+   "p media predicha": 0.1392,
+   "% alertados con sugerencia": 0.8766
+  },
+  "Ingreso per cápita | Deciles 1–3": {
+   "n": 54355.0,
+   "tasa real": 0.1143,
+   "tasa de alerta": 0.2246,
+   "recall": 0.9788,
+   "precisión": 0.4983,
+   "recall B1": 0.9698,
+   "costo/1000 modelo": 136.9699,
+   "costo/1000 B1": 155.3675,
+   "p media predicha": 0.1323,
+   "% alertados con sugerencia": 0.8883
+  },
+  "Ingreso per cápita | Deciles 4–6": {
+   "n": 32295.0,
+   "tasa real": 0.106,
+   "tasa de alerta": 0.211,
+   "recall": 0.9781,
+   "precisión": 0.4913,
+   "recall B1": 0.9711,
+   "costo/1000 modelo": 130.5465,
+   "costo/1000 B1": 145.9978,
+   "p media predicha": 0.1244,
+   "% alertados con sugerencia": 0.8864
+  },
+  "Ingreso per cápita | Deciles 7–10": {
+   "n": 44438.0,
+   "tasa real": 0.1016,
+   "tasa de alerta": 0.1986,
+   "recall": 0.9778,
+   "precisión": 0.4999,
+   "recall B1": 0.9668,
+   "costo/1000 modelo": 121.8327,
+   "costo/1000 B1": 141.4555,
+   "p media predicha": 0.1182,
+   "% alertados con sugerencia": 0.8857
+  },
+  "Ingreso per cápita | Sin dato": {
+   "n": 50950.0,
+   "tasa real": 0.1174,
+   "tasa de alerta": 0.2239,
+   "recall": 0.9763,
+   "precisión": 0.5118,
+   "recall B1": 0.9629,
+   "costo/1000 modelo": 137.1737,
+   "costo/1000 B1": 156.9971,
+   "p media predicha": 0.1338,
+   "% alertados con sugerencia": 0.8852
+  },
+  "Dependencia | Admin. delegada": {
+   "n": 4047.0,
+   "tasa real": 0.129,
+   "tasa de alerta": 0.2488,
+   "recall": 0.9713,
+   "precisión": 0.5035,
+   "recall B1": 0.954,
+   "costo/1000 modelo": 160.6128,
+   "costo/1000 B1": 186.0638,
+   "p media predicha": 0.1479,
+   "% alertados con sugerencia": 0.8977
+  },
+  "Dependencia | Municipal / SLE": {
+   "n": 48596.0,
+   "tasa real": 0.1183,
+   "tasa de alerta": 0.2386,
+   "recall": 0.981,
+   "precisión": 0.4864,
+   "recall B1": 0.9716,
+   "costo/1000 modelo": 144.9708,
+   "costo/1000 B1": 166.0013,
+   "p media predicha": 0.1378,
+   "% alertados con sugerencia": 0.8938
+  },
+  "Dependencia | Particular pagado": {
+   "n": 28592.0,
+   "tasa real": 0.0842,
+   "tasa de alerta": 0.1467,
+   "recall": 0.9734,
+   "precisión": 0.5589,
+   "recall B1": 0.9664,
+   "costo/1000 modelo": 87.0873,
+   "costo/1000 B1": 114.1928,
+   "p media predicha": 0.0913,
+   "% alertados con sugerencia": 0.8472
+  },
+  "Dependencia | Particular subvencionado": {
+   "n": 99286.0,
+   "tasa real": 0.1134,
+   "tasa de alerta": 0.2223,
+   "recall": 0.9776,
+   "precisión": 0.4988,
+   "recall B1": 0.9661,
+   "costo/1000 modelo": 136.7867,
+   "costo/1000 B1": 151.9952,
+   "p media predicha": 0.1325,
+   "% alertados con sugerencia": 0.8929
+  },
+  "Dependencia | s/d": {
+   "n": 1517.0,
+   "tasa real": 0.1272,
+   "tasa de alerta": 0.2584,
+   "recall": 0.9534,
+   "precisión": 0.4694,
+   "recall B1": 0.9534,
+   "costo/1000 modelo": 196.4403,
+   "costo/1000 B1": 177.3237,
+   "p media predicha": 0.1431,
+   "% alertados con sugerencia": 0.699
+  },
+  "Rama | Humanista-científica": {
+   "n": 151212.0,
+   "tasa real": 0.105,
+   "tasa de alerta": 0.2036,
+   "recall": 0.9782,
+   "precisión": 0.5045,
+   "recall B1": 0.9681,
+   "costo/1000 modelo": 123.7865,
+   "costo/1000 B1": 141.834,
+   "p media predicha": 0.1219,
+   "% alertados con sugerencia": 0.8815
+  },
+  "Rama | Técnico-profesional": {
+   "n": 30826.0,
+   "tasa real": 0.1378,
+   "tasa de alerta": 0.2745,
+   "recall": 0.9758,
+   "precisión": 0.49,
+   "recall B1": 0.964,
+   "costo/1000 modelo": 173.425,
+   "costo/1000 B1": 194.576,
+   "p media predicha": 0.1571,
+   "% alertados con sugerencia": 0.9048
+  },
+  "Región | Metropolitana": {
+   "n": 71986.0,
+   "tasa real": 0.0989,
+   "tasa de alerta": 0.1795,
+   "recall": 0.9805,
+   "precisión": 0.5402,
+   "recall B1": 0.969,
+   "costo/1000 modelo": 101.8254,
+   "costo/1000 B1": 116.0781,
+   "p media predicha": 0.1093,
+   "% alertados con sugerencia": 0.8647
+  },
+  "Región | Otras regiones": {
+   "n": 110052.0,
+   "tasa real": 0.1182,
+   "tasa de alerta": 0.2393,
+   "recall": 0.9762,
+   "precisión": 0.4823,
+   "recall B1": 0.9663,
+   "costo/1000 modelo": 152.0554,
+   "costo/1000 B1": 173.4544,
+   "p media predicha": 0.14,
+   "% alertados con sugerencia": 0.8972
+  },
+  "Cupos | Postula a cupo BEA": {
+   "n": 8302.0,
+   "tasa real": 0.075,
+   "tasa de alerta": 0.1119,
+   "recall": 0.9936,
+   "precisión": 0.6663,
+   "recall B1": 1.0,
+   "costo/1000 modelo": 42.1585,
+   "costo/1000 B1": 69.7422,
+   "p media predicha": 0.0856,
+   "% alertados con sugerencia": 0.5974
+  },
+  "Cupos | Postula a cupo PACE": {
+   "n": 19052.0,
+   "tasa real": 0.0991,
+   "tasa de alerta": 0.2135,
+   "recall": 0.9804,
+   "precisión": 0.4553,
+   "recall B1": 0.9746,
+   "costo/1000 modelo": 135.7338,
+   "costo/1000 B1": 166.0193,
+   "p media predicha": 0.1186,
+   "% alertados con sugerencia": 0.8572
+  },
+  "Cupos | Postula a cupo de género": {
+   "n": 18819.0,
+   "tasa real": 0.0577,
+   "tasa de alerta": 0.1356,
+   "recall": 0.9742,
+   "precisión": 0.4146,
+   "recall B1": 0.9604,
+   "costo/1000 modelo": 94.2664,
+   "costo/1000 B1": 107.4977,
+   "p media predicha": 0.0716,
+   "% alertados con sugerencia": 0.969
+  },
+  "Cupos | Solo cupo regular": {
+   "n": 135865.0,
+   "tasa real": 0.1217,
+   "tasa de alerta": 0.2334,
+   "recall": 0.977,
+   "precisión": 0.5094,
+   "recall B1": 0.9656,
+   "costo/1000 modelo": 142.4502,
+   "costo/1000 B1": 159.5702,
+   "p media predicha": 0.1395,
+   "% alertados con sugerencia": 0.8921
+  },
+  "Carrera nueva en la lista | Con carrera sin corte previo": {
+   "n": 31174.0,
+   "tasa real": 0.0829,
+   "tasa de alerta": 0.2071,
+   "recall": 0.9803,
+   "precisión": 0.3925,
+   "recall B1": 0.9799,
+   "costo/1000 modelo": 142.1698,
+   "costo/1000 B1": 172.6439,
+   "p media predicha": 0.1134,
+   "% alertados con sugerencia": 0.8214
+  },
+  "Carrera nueva en la lista | Todas con corte previo": {
+   "n": 150864.0,
+   "tasa real": 0.1163,
+   "tasa de alerta": 0.2174,
+   "recall": 0.9773,
+   "precisión": 0.5228,
+   "recall B1": 0.9654,
+   "costo/1000 modelo": 130.1304,
+   "costo/1000 B1": 146.2443,
+   "p media predicha": 0.1308,
+   "% alertados con sugerencia": 0.8993
+  }
+ },
+ "monitoring": {
+  "psi": {
+   "best_holgura": {
+    "PSI 2024→2025": 0.0009,
+    "PSI 2025→2026": 0.0082
+   },
+   "best_ptje": {
+    "PSI 2024→2025": 0.0008,
+    "PSI 2025→2026": 0.0034
+   },
+   "n_prefs": {
+    "PSI 2024→2025": 0.0019,
+    "PSI 2025→2026": 0.003
+   },
+   "n_valid": {
+    "PSI 2024→2025": 0.0016,
+    "PSI 2025→2026": 0.0032
+   },
+   "mean_holgura": {
+    "PSI 2024→2025": 0.0013,
+    "PSI 2025→2026": 0.0085
+   },
+   "n_sin_corte_prev": {
+    "PSI 2024→2025": 0.0,
+    "PSI 2025→2026": 0.0052
+   }
+  },
+  "coverage": {
+   "2024": {
+    "% preferencias en carreras sin corte previo": 0.0234,
+    "tasa de alerta de la regla B1": 0.2585
+   },
+   "2025": {
+    "% preferencias en carreras sin corte previo": 0.0218,
+    "tasa de alerta de la regla B1": 0.2498
+   },
+   "2026": {
+    "% preferencias en carreras sin corte previo": 0.0316,
+    "tasa de alerta de la regla B1": 0.2215
+   }
+  }
+ },
+ "final": {
+  "Nadie recibe alerta": {
+   "costo/1000": 1105.868,
+   "tasa de alerta": 0.0,
+   "recall": 0.0,
+   "precisión": 0.0,
+   "AUC": NaN,
+   "PR-AUC": NaN,
+   "log-loss": NaN,
+   "Brier": NaN
+  },
+  "Todos reciben alerta": {
+   "costo/1000": 889.4132,
+   "tasa de alerta": 1.0,
+   "recall": 1.0,
+   "precisión": 0.1106,
+   "AUC": NaN,
+   "PR-AUC": NaN,
+   "log-loss": NaN,
+   "Brier": NaN
+  },
+  "B0: regla de hoy (margen 0)": {
+   "costo/1000": 180.6766,
+   "tasa de alerta": 0.1391,
+   "recall": 0.8749,
+   "precisión": 0.6955,
+   "AUC": NaN,
+   "PR-AUC": NaN,
+   "log-loss": NaN,
+   "Brier": NaN
+  },
+  "B1: regla con margen +35": {
+   "costo/1000": 150.7652,
+   "tasa de alerta": 0.2215,
+   "recall": 0.9673,
+   "precisión": 0.4829,
+   "AUC": NaN,
+   "PR-AUC": NaN,
+   "log-loss": NaN,
+   "Brier": NaN
+  },
+  "Logit F1": {
+   "costo/1000": 146.8979,
+   "tasa de alerta": 0.2299,
+   "recall": 0.9773,
+   "precisión": 0.4701,
+   "AUC": 0.9812,
+   "PR-AUC": 0.8755,
+   "log-loss": 0.1135,
+   "Brier": 0.0336
+  },
+  "HistGB F1": {
+   "costo/1000": 132.1922,
+   "tasa de alerta": 0.2156,
+   "recall": 0.9777,
+   "precisión": 0.5014,
+   "AUC": 0.9846,
+   "PR-AUC": 0.9057,
+   "log-loss": 0.1009,
+   "Brier": 0.0306
+  }
+ },
+ "final_boot": {
+  "Logit F1 − B0": {
+   "media": -34.06441712033937,
+   "ic": [
+    -38.79151658472057,
+    -29.126526151767493
+   ]
+  },
+  "HistGB F1 − B0": {
+   "media": -48.74580453018215,
+   "ic": [
+    -53.47245896349702,
+    -43.56016869296154
+   ]
+  },
+  "B1 − B0": {
+   "media": -30.172554568645168,
+   "ic": [
+    -34.487356165554104,
+    -25.882024970015564
+   ]
+  },
+  "Logit F1 − B1": {
+   "media": -3.8918625516942074,
+   "ic": [
+    -6.0163314287991225,
+    -1.705573848335133
+   ]
+  },
+  "HistGB F1 − B1": {
+   "media": -18.573249961536973,
+   "ic": [
+    -21.42333155810549,
+    -16.157589455822617
+   ]
+  },
+  "HistGB F1 − Logit F1": {
+   "media": -14.681387409842767,
+   "ic": [
+    -16.790770067223022,
+    -12.625241534021345
+   ]
+  }
+ },
+ "params": {
+  "margin_B1": 35.0,
+  "C_logit": 10,
+  "hgb": {
+   "min_samples_leaf": 100,
+   "max_leaf_nodes": 31,
+   "learning_rate": 0.05,
+   "l2_regularization": 10
+  },
+  "p_star": 0.09090909090909091,
+  "n_test_efectivos": 182038,
+  "n_test_sin_preferencia_valida": 7361,
+  "n_test_positivos": 20131
+ },
+ "hgb_seeds_cost": [
+  132.19,
+  133.0,
+  133.68,
+  131.72,
+  133.08
+ ]
+}
